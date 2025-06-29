@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Satisfaction Predictor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #004d40;
+      margin-top: 30px;
+    }
+
+    form {
+      background: #ffffff;
+      padding: 30px 40px;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 8px;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 42px;
+      color: #00796b;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Customer Satisfaction Prediction</h1>
+  <form id="predictForm">
+    <label>Customer Age: <input type="number" name="Customer Age" required></label><br>
+
+    <label>Customer Gender (0 = Male, 1 = Female): 
+      <select name="Customer Gender" required>
+        <option value="">--Select Customer Gender--</option>
+        <option>0</option>
+        <option>1</option>
+      </select>
+    </label><br>
+    
+    <label>Product Purchased:
+      <select name="Product Purchased" required>
+        <option value="">--Select Product--</option>
+        <option>GoPro Hero</option>
+        <option>LG Smart TV</option>
+        <option>Dell XPS</option>
+        <option>Microsoft Office</option>
+        <option>Autodesk AutoCAD</option>
+        <option>Microsoft Surface</option>
+        <option>Philips Hue Lights</option>
+        <option>Fitbit Versa Smartwatch</option>
+        <option>Dyson Vacuum Cleaner</option>
+        <option>Nintendo Switch</option>
+        <option>Microsoft Xbox Controller</option>
+        <option>Nintendo Switch Pro Controller</option>
+        <option>Nest Thermostat</option>
+        <option>Sony PlayStation</option>
+        <option>GoPro Action Camera</option>
+        <option>Xbox</option>
+        <option>LG Washing Machine</option>
+        <option>Canon EOS</option>
+        <option>HP Pavilion</option>
+        <option>Amazon Kindle</option>
+        <option>Lenovo ThinkPad</option>
+        <option>Fitbit Charge</option>
+        <option>Adobe Photoshop</option>
+        <option>Google Pixel</option>
+        <option>Amazon Echo</option>
+        <option>PlayStation</option>
+        <option>Samsung Galaxy</option>
+        <option>iPhone</option>
+        <option>LG OLED</option>
+        <option>Sony Xperia</option>
+        <option>Apple AirPods</option>
+        <option>Sony 4K HDR TV</option>
+        <option>Canon DSLR Camera</option>
+        <option>Roomba Robot Vacuum</option>
+        <option>Nikon D</option>
+        <option>Bose QuietComfort</option>
+        <option>Samsung Soundbar</option>
+        <option>Asus ROG</option>
+        <option>Bose SoundLink Speaker</option>
+        <option>Google Nest</option>
+        <option>Garmin Forerunner</option>
+        <option>MacBook Pro</option>
+      </select>
+    </label><br>
+    
+    <label>Ticket Type:
+      <select name="Ticket Type" required>
+        <option value="">--Select Ticket Type--</option>
+        <option>Technical issue</option>
+        <option>Billing inquiry</option>
+        <option>Cancellation request</option>
+        <option>Product inquiry</option>
+        <option>Refund request</option>
+      </select>
+    </label><br>
+    <label>Ticket Status (0 = Opened, 1 = Pending, 2 = Closed):
+      <select name="Ticket Status" required>
+        <option value="">--Select Ticket Status--</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+      </select>
+    </label><br>    
+    <label>Ticket Priority (Low = 0, Medium = 1, High = 2, Critical = 3):
+      <select name="Ticket Priority" required>
+        <option value="">--Select Ticket Priority--</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>    
+    </label><br>
+    <label>Ticket Channel: 
+      <select name="Ticket Channel" required>
+        <option value="">--Select Ticket Channel--</option>
+        <option>Email</option>
+        <option>Social media</option>
+        <option>Chat</option>
+        <option>Phone</option>
+      </select>
+    </label><br>
+    <label>Viewed Ticket (0 = Not Viewed or 1 = Viewed): 
+      <select name="Viewed Ticket" required>
+        <option value="">--Select Viewed Ticket--</option>
+        <option>0</option>
+        <option>1</option>
+      </select>    
+    </label><br>
+    <label>Ticket Solved (0 = Not Solved or 1 = Solved): 
+      <select name="Ticket Solved" required>
+        <option value="">--Select Ticket Solved--</option>
+        <option>0</option>
+        <option>1</option>
+      </select>
+    </label><br>
+    <label>Purchase Year: <input type="number" name="Purchase_Year" required></label><br>
+    <label>Purchase Month: <input type="number" name="Purchase_Month" required></label><br>
+    <label>Purchase Date: <input type="number" name="Purchase_Date" required></label><br>
+    <label>Purchase Day Of Week (0=Mon, 6=Sun): 
+      <select name="Purchase Day Of Week" required>
+        <option value="">--Select Purchase Day Of Week--</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
+    </label><br><br>
+
+    <button type="submit">Predict</button>
+  </form>
+
+  <h3 id="result"></h3>
+
+  <script>
+    document.getElementById('predictForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = isNaN(value) ? value : Number(value);
+      });
+
+      const response = await fetch('/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      document.getElementById('result').innerText = `Predicted Satisfaction Rating: ${result.prediction}`;
+    });
+  </script>
+</body>
+</html>
